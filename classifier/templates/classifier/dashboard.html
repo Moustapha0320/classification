@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Tableau de Bord</title>
+    <style>
+        /* Styles de base */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #007bff;
+            padding: 15px 20px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .logout-container .logout-button {
+            background: #dc3545;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .logout-container .logout-button:hover {
+            background: #c82333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            text-align: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        table th {
+            background: #007bff;
+            color: white;
+        }
+
+        .button {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+            width: fit-content;
+        }
+
+        .button:hover {
+            background: #1e7e34;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            table th, table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .logout-container {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <h1>Tableau de Bord</h1>
+    <div class="logout-container">
+        <a href="{% url 'logout' %}" class="logout-button">🚪 Se Déconnecter</a>
+    </div>
+</nav>
+<div class="container">
+    <p>Bienvenue, {{ user.username }} !</p>
+
+    <h2>📤 Reconnaissance d'Images</h2>
+    <a href="{% url 'index' %}" class="button">Aller vers l'upload</a>
+
+    <h2>🎭 Génération d'Image Adversariale</h2>
+    <a href="{% url 'generate_adversarial' %}" class="button adversarial-button">Générer une Image Adversariale</a>
+
+
+    <h2>📜 Historique des Prédictions</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Classe Prédite</th>
+            <th>Confiance</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for prediction in predictions %}
+        <tr>
+            <td><img src="{{ prediction.image.url }}" width="100"></td>
+            <td>{{ prediction.predicted_class }}</td>
+            <td>{{ prediction.confidence }}%</td>
+            <td>{{ prediction.uploaded_at }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Aucune prédiction enregistrée.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

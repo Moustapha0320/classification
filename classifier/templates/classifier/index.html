@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification d'Images - Moto, voiture ou Bâteau</title>
+    <link rel="stylesheet" href="{% static 'classifier/styles.css' %}">
+</head>
+<body>
+<div class="container">
+    <!-- Bouton de retour au Dashboard -->
+    <div class="back-to-dashboard">
+        <a href="{% url 'dashboard' %}" class="button">⬅ Retour au Dashboard</a>
+    </div>
+
+    <h1>Reconnaissance d'Images</h1>
+
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="upload-container">
+        <form action="{% url 'index' %}" method="post" enctype="multipart/form-data" id="uploadForm">
+        {% csrf_token %}
+
+            <div class="file-input-container">
+                <label for="fileInput" class="file-input-label">Choisir une image</label>
+                <input type="file" name="file" id="fileInput" accept=".jpg,.jpeg,.png" required>
+            </div>
+
+            <!-- Aperçu de l'image -->
+            <div id="previewContainer" class="preview-container hidden">
+                <img id="imagePreview" src="#" alt="Aperçu de l'image" class="preview-image">
+                <button type="button" id="removePreview" class="remove-button">&times;</button>
+            </div>
+
+            <button type="submit" class="submit-button">Analyser l'image</button>
+        </form>
+    </div>
+
+    <div class="info-container">
+        <h3>Types d'images acceptés:</h3>
+        <ul>
+            <li>JPG/JPEG/PNG</li>
+        </ul>
+        <p class="note">Taille maximale: 16Mo</p>
+    </div>
+</div>
+
+<!-- Script pour afficher l'aperçu de l'image -->
+<script>
+    const fileInput = document.getElementById('fileInput');
+    const previewContainer = document.getElementById('previewContainer');
+    const imagePreview = document.getElementById('imagePreview');
+    const removePreview = document.getElementById('removePreview');
+
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                previewContainer.classList.remove('hidden');
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    removePreview.addEventListener('click', function() {
+        fileInput.value = '';
+        previewContainer.classList.add('hidden');
+        imagePreview.src = '#';
+    });
+</script>
+</body>
+</html>

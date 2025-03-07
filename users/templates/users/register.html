@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription</title>
+  <link rel="stylesheet" href="{% static 'classifier/styles.css' %}">
+  <style>
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-container input {
+      width: 100%;
+      padding-right: 40px; /* Ajout d'un espace pour l'icône */
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 12px;
+      cursor: pointer;
+      font-size: 20px;
+      top: 35%;
+      transform: translateY(-50%);
+      color: #777;
+      transition: color 0.3s ease;
+    }
+
+    .eye-icon:hover {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Inscription</h1>
+
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" name="username" required>
+
+    <label for="password">Mot de passe :</label>
+    <div class="password-container">
+      <input type="password" name="password" id="password" required>
+      <span class="eye-icon" onclick="togglePasswordVisibility('password')">👁️</span>
+    </div>
+
+    <label for="confirm_password">Confirmer le mot de passe :</label>
+    <div class="password-container">
+      <input type="password" name="confirm_password" id="confirm_password" required>
+      <span class="eye-icon" onclick="togglePasswordVisibility('confirm_password')">👁️</span>
+    </div>
+
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <p>Déjà un compte ? <a href="{% url 'login' %}">Connectez-vous</a></p>
+</div>
+
+<!-- Script pour afficher/masquer le mot de passe -->
+<script>
+  function togglePasswordVisibility(id) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+      input.type = "text";
+    } else {
+      input.type = "password";
+    }
+  }
+</script>
+</body>
+</html>

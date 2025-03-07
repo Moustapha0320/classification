@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat de la Classification</title>
+    <link rel="stylesheet" href="{% static 'classifier/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Résultat de la Classification</h1>
+
+        <div class="result-container">
+            <div class="image-container">
+                <img src="{{ image_path }}" alt="Image analysée" class="result-image">
+            </div>
+
+            <div class="predictions-container">
+                <div class="main-prediction">
+                    <h2>Cette image est un :</h2>
+                    <div class="prediction-result">
+                        <span class="predicted-class">{{ predicted_class }}</span>
+                        <span class="confidence">{{ confidence }}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="{% url 'index' %}" class="button">Analyser une autre image</a>
+        </div>
+    </div>
+</body>
+</html>
