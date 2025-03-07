@@ -11,7 +11,7 @@ Ce projet est une application web développée avec Django qui permet de classer
 - [Prérequis](#prérequis)
 - [Installation et Configuration](#installation-et-configuration)
 - [Entraînement du Modèle](#Entraînement-du-Modèle)
-- [Prédiction et Génération d'Images Adversariales](#Prédiction-et-Génération-d'Images-Adversariales)
+- [Prédiction et Génération d'Images Adversariales](#Prédiction-et-Génération-d-Images-Adversariales)
 - [Défense contre les Attaques par Évasion](#défense-contre-les-attaques-par-évasion)
 - [Organisation du Dataset](#organisation-du-dataset)
 - [Licence](#licence)
@@ -72,15 +72,18 @@ Une fonctionnalité additionnelle permet de générer des images adversariales p
 6. **Utilisation de l'application :**
     
  - Entraînement du modèle :
-   Suivez les étapes du pipeline d'entraînement qui incluent la préparation du dataset, la data augmentation, la définition du modèle (basé sur EfficientNetB0),     et l'entraînement avec des callbacks.
+   Suivez les étapes du pipeline d'entraînement qui incluent la 
+   préparation du dataset, la data augmentation, la définition du modèle 
+   (basé sur EfficientNetB0),     et l'entraînement avec des callbacks.
        
  - Prédiction et génération d'images adversariales :
-   Une fois le modèle entraîné, l'application permet d'uploader des images pour obtenir une classification et de générer des images adversariales en fonction        d'un paramètre epsilon sélectionné par l'utilisateur.
+   Une fois le modèle entraîné, l'application permet d'uploader des         images pour obtenir une classification et de générer des images          adversariales en fonction d'un paramètre epsilon sélectionné      par 
+   l'utilisateur.
        
  - Historique des prédictions :
-   Chaque utilisateur peut consulter son historique de prédictions via le dashboard.
+   Chaque utilisateur peut consulter son historique de prédictions via 
+   le dashboard.
    
-   N'hésite pas à adapter ce contenu selon tes besoins spécifiques.
 
 ## Entraînement du Modèle
 Le pipeline d'entraînement est le suivant :
@@ -96,10 +99,10 @@ Le pipeline d'entraînement est le suivant :
   - Utilisation de ImageDataGenerator avec normalisation et augmentation      des données.
     
 4. Définition du modèle :
-  - Utilisation d'EfficientNetB0 en transfert learning avec des couches       supplémentaires (GlobalAveragePooling, BatchNormalization, Dense,         Dropout).
+  - Utilisation d'EfficientNetB0 en transfert learning avec des couches      supplémentaires (GlobalAveragePooling, BatchNormalization, Dense,        Dropout).
     
 5. Entraînement :
-  - Entraînement sur 20 epochs avec callbacks (ReduceLROnPlateau et           EarlyStopping).
+  - Entraînement sur 20 epochs avec callbacks (ReduceLROnPlateau et          EarlyStopping).
     
 ## Prédiction et Génération d'Images Adversariales
   - Upload et Classification
