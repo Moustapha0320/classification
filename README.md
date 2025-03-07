@@ -10,10 +10,6 @@ Ce projet est une application web développée avec Django qui permet de classer
 - [Fonctionnalités](#fonctionnalités)
 - [Prérequis](#prérequis)
 - [Installation et Configuration](#installation-et-configuration)
-- [Utilisation](#utilisation)
-  - [Lancement du serveur](#lancement-du-serveur)
-  - [Entraînement du modèle](#entraînement-du-modèle)
-  - [Prédiction et Génération d'Images Adversariales](#prédiction-et-génération-dimages-adversariales)
 - [Évaluation du Modèle](#évaluation-du-modèle)
 - [Défense contre les Attaques par Évasion](#défense-contre-les-attaques-par-évasion)
 - [Organisation du Dataset](#organisation-du-dataset)
@@ -40,7 +36,7 @@ Une fonctionnalité additionnelle permet de générer des images adversariales p
 
 ## Prérequis
 
-- **Python 3.10** (ou supérieur)
+- **Python 3.10** 
 - **Django 5.1.6**
 - **TensorFlow 2.15.1** (incluant Keras)
 - Autres packages Python : `numpy`, `pandas`, `matplotlib`, `seaborn`, `scikit-learn`, `opencv-python`, `h5py`
