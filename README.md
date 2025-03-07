@@ -13,8 +13,6 @@ Ce projet est une application web développée avec Django qui permet de classer
 - [Entraînement du Modèle](#Entraînement-du-Modèle)
 - [Prédiction et Génération d'Images Adversariales](#Prédiction-et-Génération-d-Images-Adversariales)
 - [Défense contre les Attaques par Évasion](#défense-contre-les-attaques-par-évasion)
-- [Organisation du Dataset](#organisation-du-dataset)
-- [Licence](#licence)
 
 ---
 
