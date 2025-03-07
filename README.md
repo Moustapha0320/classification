@@ -51,40 +51,24 @@ Une fonctionnalité additionnelle permet de générer des images adversariales p
    cd classification
 2. **Créer et activer un environnement virtuel :**
    ```bash
-   python3 -m venv env
+   python3.10 -m venv env
    source env/bin/activate  # Sur Windows: env\Scripts\activate
 3. **Installer les dépendances :**
    ```bash
-   pip install -r requirements.txt
+   pip3.10 install -r requirements.txt
 
 4. **Effectuer les migrations et créer un superutilisateur :**
     ```bash
-    python manage.py makemigrations
-    python manage.py migrate
-    python manage.py createsuperuser
+    python3.10 manage.py makemigrations
+    python3.10 manage.py migrate
+    python3.10 manage.py createsuperuser
 
-5. **Configurer les chemins médias dans settings.py :**
+
+5. **Lancer le serveur de développement :**
     ```bash
-    import os
+    python3.10 manage.py runserver
 
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    UPLOAD_FOLDER = os.path.join(MEDIA_ROOT, 'uploads')
-    
-6. **Ajouter l'URL statique pour les médias dans urls.py du projet :**
-    ```bash
-    from django.conf import settings
-    from django.conf.urls.static import static
-
-    urlpatterns = [
-    # vos autres routes...
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-7. **Lancer le serveur de développement :**
-    ```bash
-    python manage.py runserver
-
-8. **Utilisation de l'application :**
+6. **Utilisation de l'application :**
     
  - Entraînement du modèle :
    Suivez les étapes du pipeline d'entraînement qui incluent la préparation du dataset, la data augmentation, la définition du modèle (basé sur EfficientNetB0),     et l'entraînement avec des callbacks.
@@ -97,3 +81,18 @@ Une fonctionnalité additionnelle permet de générer des images adversariales p
    
    N'hésite pas à adapter ce contenu selon tes besoins spécifiques.
 
+## Entraînement du Modèle
+Le pipeline d'entraînement est le suivant :
+
+1. Préparation du dataset :
+  - Les images sont organisées dans des dossiers (ex. : Bike, Car, Ship).
+  - Le dataset est chargé dans un DataFrame avec les chemins et labels.
+
+2. Séparation du dataset :
+  - Split en ensembles d'entraînement, validation et test (80%/10%/10%).
+3. Data Augmentation :
+  - Utilisation de ImageDataGenerator avec normalisation et augmentation      des données.
+4. Définition du modèle :
+  - Utilisation d'EfficientNetB0 en transfert learning avec des couches       supplémentaires (GlobalAveragePooling, BatchNormalization, Dense,         Dropout).
+5. Entraînement :
+  - Entraînement sur 20 epochs avec callbacks (ReduceLROnPlateau et           EarlyStopping).
