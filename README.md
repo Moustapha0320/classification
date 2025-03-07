@@ -10,7 +10,8 @@ Ce projet est une application web développée avec Django qui permet de classer
 - [Fonctionnalités](#fonctionnalités)
 - [Prérequis](#prérequis)
 - [Installation et Configuration](#installation-et-configuration)
-- [Évaluation du Modèle](#évaluation-du-modèle)
+- [Entraînement du Modèle](#Entraînement-du-Modèle)
+- [Prédiction et Génération d'Images Adversariales](#Prédiction-et-Génération-d'Images-Adversariales)
 - [Défense contre les Attaques par Évasion](#défense-contre-les-attaques-par-évasion)
 - [Organisation du Dataset](#organisation-du-dataset)
 - [Licence](#licence)
@@ -90,9 +91,36 @@ Le pipeline d'entraînement est le suivant :
 
 2. Séparation du dataset :
   - Split en ensembles d'entraînement, validation et test (80%/10%/10%).
+    
 3. Data Augmentation :
   - Utilisation de ImageDataGenerator avec normalisation et augmentation      des données.
+    
 4. Définition du modèle :
   - Utilisation d'EfficientNetB0 en transfert learning avec des couches       supplémentaires (GlobalAveragePooling, BatchNormalization, Dense,         Dropout).
+    
 5. Entraînement :
   - Entraînement sur 20 epochs avec callbacks (ReduceLROnPlateau et           EarlyStopping).
+    
+## Prédiction et Génération d'Images Adversariales
+  - Upload et Classification
+    Les utilisateurs peuvent uploader une image et obtenir une       
+    prédiction.
+
+  - Génération d'Images Adversariales
+    La fonctionnalité permet de sélectionner une intensité (epsilon) 
+    pour générer une image adversariale.
+    Les images originales et adversariales sont affichées, et 
+    l'utilisateur peut les télécharger.
+
+## Défense contre les Attaques par Évasion
+Pour renforcer la robustesse du modèle face aux attaques par évasion :
+
+   - Entraînement adversarial : Intégrer des exemples adversariaux            pendant l'entraînement pour rendre le modèle plus robuste.
+
+   - Détection d'exemples adversariaux : Mettre en place des mécanismes       de détection pour identifier et rejeter les entrées suspectes.
+
+   - Régularisation : Utiliser du Dropout et de la régularisation L2 
+     pour réduire la sensibilité du modèle aux perturbations.
+
+   - Approche combinée : Une approche combinée est souvent nécessaire 
+     pour obtenir une protection optimale.
