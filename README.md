@@ -87,10 +87,10 @@ Une fonctionnalité additionnelle permet de générer des images adversariales p
 8. **Utilisation de l'application :**
     ```bash
     Entraînement du modèle :
-    Suivez les étapes du pipeline d'entraînement qui incluent la     préparation du dataset, la data augmentation, la définition du modèle (basé sur EfficientNetB0), et l'entraînement avec des callbacks.
+    Suivez les étapes du pipeline d'entraînement qui incluent la préparation du dataset, la data augmentation, la définition du modèle (basé sur EfficientNetB0),     et l'entraînement avec des callbacks.
     
     Prédiction et génération d'images adversariales :
-    Une fois le modèle entraîné, l'application permet d'uploader des images pour obtenir une classification et de générer des images adversariales en fonction d'un paramètre epsilon sélectionné par l'utilisateur.
+    Une fois le modèle entraîné, l'application permet d'uploader des images pour obtenir une classification et de générer des images adversariales en fonction        d'un paramètre epsilon sélectionné par l'utilisateur.
     
     Historique des prédictions :
     Chaque utilisateur peut consulter son historique de prédictions via le dashboard.
