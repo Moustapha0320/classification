@@ -53,3 +53,51 @@ Une fonctionnalité additionnelle permet de générer des images adversariales p
    ```bash
    git clone https://github.com/Moustapha0320/classification.git
    cd classification
+2. **Créer et activer un environnement virtuel :**
+   ```bash
+   python3 -m venv env
+   source env/bin/activate  # Sur Windows: env\Scripts\activate
+3. **Installer les dépendances :**
+   ```bash
+   pip install -r requirements.txt
+
+4. **Effectuer les migrations et créer un superutilisateur :**
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py createsuperuser
+
+5. **Configurer les chemins médias dans settings.py :**
+    ```bash
+    import os
+
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    UPLOAD_FOLDER = os.path.join(MEDIA_ROOT, 'uploads')
+    
+6. **Ajouter l'URL statique pour les médias dans urls.py du projet :**
+    ```bash
+    from django.conf import settings
+    from django.conf.urls.static import static
+
+    urlpatterns = [
+    # vos autres routes...
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+7. **Lancer le serveur de développement :**
+    ```bash
+    python manage.py runserver
+
+8. **Utilisation de l'application :**
+    ```bash
+    Entraînement du modèle :
+    Suivez les étapes du pipeline d'entraînement qui incluent la     préparation du dataset, la data augmentation, la définition du modèle (basé sur EfficientNetB0), et l'entraînement avec des callbacks.
+    
+    Prédiction et génération d'images adversariales :
+    Une fois le modèle entraîné, l'application permet d'uploader des images pour obtenir une classification et de générer des images adversariales en fonction d'un paramètre epsilon sélectionné par l'utilisateur.
+    
+    Historique des prédictions :
+    Chaque utilisateur peut consulter son historique de prédictions via le dashboard.
+
+    N'hésite pas à adapter ce contenu selon tes besoins spécifiques.
+
