@@ -118,7 +118,6 @@ Pour renforcer la robustesse du modèle face aux attaques par évasion :
 
    - Entraînement adversarial : Intégrer des exemples adversariaux            pendant l'entraînement pour rendre le modèle plus robuste.
 
-   - Détection d'exemples adversariaux : Mettre en place des mécanismes       de détection pour identifier et rejeter les entrées suspectes.
 
    - Régularisation : Utiliser du Dropout et de la régularisation L2 
      pour réduire la sensibilité du modèle aux perturbations.
