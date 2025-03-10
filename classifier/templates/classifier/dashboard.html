@@ -11,7 +11,7 @@
         /* Styles de base */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #F5F5DC;
             margin: 0;
             padding: 0;
             color: #333;
@@ -53,7 +53,7 @@
         .container {
             max-width: 900px;
             margin: 20px auto;
-            background: #fff;
+            background: #F5F5DC;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -131,8 +131,8 @@
     </div>
 </nav>
 <div class="container">
-    <p>Dikeullak diam, {{ user.username }} !</p>
-    <p>Bienvenu(e)!, {{ user.username }} !</p>
+    <p>Dalal ak jàmm, {{ user.username }} ! thi souniou Aplikaasioŋu </p>
+    <p>Bienvenu(e), {{ user.username }} ! dans notre application</p>
     <h2>📤 Reconnaissance d'Images</h2>
     <a href="{% url 'index' %}" class="button">Aller vers l'upload</a>
 
@@ -156,7 +156,7 @@
             <td><img src="{{ prediction.image.url }}" width="100"></td>
             <td>{{ prediction.predicted_class }}</td>
             <td>{{ prediction.confidence }}%</td>
-            <td>{{ prediction.uploaded_at }}</td>
+            <td>{{ prediction.uploaded_at|date:"d/m/Y H:i" }}</td>
         </tr>
         {% empty %}
         <tr>

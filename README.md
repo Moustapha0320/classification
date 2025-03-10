@@ -18,7 +18,7 @@ Ce projet est une application web développée avec Django qui permet de classer
 
 ## Description
 
-Cette application permet de classifier des images appartenant aux classes **Bike**, **Car** et **Ship**. Le modèle est construit en utilisant **EfficientNetB0** en transfert de connaissances (Transfer Learning) et est affiné avec des couches supplémentaires (GlobalAveragePooling, BatchNormalization, Dense, Dropout).  
+Cette application permet de classifier des images appartenant aux classes **Moto**, **Voiture** et **Bateau**. Le modèle est construit en utilisant **EfficientNetB0** en transfert de connaissances (Transfer Learning) et est affiné avec des couches supplémentaires (GlobalAveragePooling, BatchNormalization, Dense, Dropout).  
 Une fonctionnalité additionnelle permet de générer des images adversariales pour étudier la robustesse du modèle face aux attaques par évasion.
 
 ---
